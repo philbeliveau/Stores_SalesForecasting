@@ -1,0 +1,685 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>MOOV AI - Sales forecasting</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="19269db6-fa4f-809b-a5f6-cca3071c17bd" class="page sans"><header><h1 class="page-title">MOOV AI - Sales forecasting</h1><p class="page-description"></p></header><div class="page-body"><h1 id="19269db6-fa4f-8092-b5e1-c3dab0a5dde3" class="">Question #1 : Préparation des données</h1><h2 id="19269db6-fa4f-8094-bf92-fc5ba94f9375" class="">Enjeux #1 Discontinuité (Intermittence) </h2><p id="19269db6-fa4f-8033-bd54-c281c9b53783" class="">Le premier enjeux attrait à la discontinuité dans la série. Sur la période de 2014 à 2017, lorsque la série est à son niveau le moins granulaire, on remarque que 39% des jours sont manquants, ceux-ci s’étalant sur la période en entier. </p><figure id="19269db6-fa4f-802f-bc2b-fc9f8901940b" class="image"><a href="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-06_a_13.10.27.png"><img style="width:2878px" src="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-06_a_13.10.27.png"/></a></figure><p id="19269db6-fa4f-805d-96f4-d900b38db912" class="">De plus, c’est période de continuité ne sont pas à interval égale et surviennent de manière aléatoire. Ce qui complique davantage le traitement de la donnée. </p><figure id="19269db6-fa4f-80ff-b009-de0942cca2f9" class="image"><a href="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-05_a_08.52.59.png"><img style="width:432px" src="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-05_a_08.52.59.png"/></a></figure><h3 id="19269db6-fa4f-809f-b6b3-c11b5aa2763b" class="">Solution: </h3><ul id="19269db6-fa4f-809d-ba84-e8dad15d5c93" class="bulleted-list"><li style="list-style-type:disc">Deux features décrivant le temps moyen entres deux ventes l’intermittence: Coefficient of Variation (CV) et l’average demand interval (ADI), et ceci selon son niveau de granularité, pourrait aider l’apprentissage du modèle.  </li></ul><ul id="19269db6-fa4f-803a-b97e-db209c8daac3" class="bulleted-list"><li style="list-style-type:disc">Remplissage des données avec des 0, l’imputation n’est pas une bonne idée ici, car la valeur est manquante par le simple fait qu’il n’y a pas eu de transaction dans cette journée là. </li></ul><h2 id="19269db6-fa4f-8053-8058-d4a1cc7dc262" class="">Enjeux #2 - Granularité au niveau du magasin </h2><table id="19269db6-fa4f-807a-83a2-fcade1e03dc6" class="simple-table"><tbody><tr id="19269db6-fa4f-8093-9b61-e1924d4eb999"><td id="qqaD" class="">Région</td><td id="eUJq" class="">Pourcentage de zéros</td></tr><tr id="19269db6-fa4f-80c8-b1b2-ee34ddf11a63"><td id="qqaD" class="">Centre</td><td id="eUJq" class="">77,1%</td></tr><tr id="19269db6-fa4f-804f-8476-fd822996e96d"><td id="qqaD" class="">Est</td><td id="eUJq" class="">73,8%</td></tr><tr id="19269db6-fa4f-8051-a556-e96c7c2a7774"><td id="qqaD" class="">Sud</td><td id="eUJq" class="">83,0%</td></tr><tr id="19269db6-fa4f-80ee-a911-da3ff4551b4e"><td id="qqaD" class="">Ouest</td><td id="eUJq" class="">68,3%</td></tr></tbody></table><h3 id="19269db6-fa4f-805d-b659-d26d9a0725cb" class="">Solution: </h3><ul id="19269db6-fa4f-8086-a5a6-e44c89c4e026" class="bulleted-list"><li style="list-style-type:disc">Il est donc préférable d&#x27;agréger les données par semaine, voire par mois, en fonction de l&#x27;utilité d&#x27;une prévision hebdomadaire/mensuelle pour un responsable et du niveau de granularité d&#x27;un magasin.  </li></ul><h2 id="19269db6-fa4f-80b4-a4c4-fb843daf97b0" class="">Enjeux #3 - Valeurs sporadiques</h2><p id="19269db6-fa4f-80ec-a559-fd0c430819f8" class="">Cet enjeux concerne les « valeurs aberrantes » sporadiques, qui sont nombreuses au quotidien et qui ne sont pas totalement aléatoires. </p><figure id="19269db6-fa4f-80d2-b48a-c133d20f99dc" class="image"><a href="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/image.png"><img style="width:709.9715576171875px" src="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/image.png"/></a></figure><p id="19269db6-fa4f-8003-81e8-cb41476ad972" class="">En fait, certaines de ces valeurs aberrantes sont observées lors de vacances nationales ou de grands événements commerciaux tels que le Black Friday. De plus, ces valeurs sporadiques sont plus fréquentes certains jours de la semaine et certains mois. </p><figure id="19269db6-fa4f-8026-a09c-e907033cee76" class="image"><a href="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/image%201.png"><img style="width:709.9786376953125px" src="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/image%201.png"/></a></figure><figure id="19269db6-fa4f-8032-814a-f638a56f9dc4" class="image"><a href="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/image%202.png"><img style="width:709.9928588867188px" src="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/image%202.png"/></a></figure><h3 id="19269db6-fa4f-80f8-91bc-e8fbf8766e9d" class="">Solution</h3><ul id="19369db6-fa4f-8011-9c02-fcee6cda665a" class="bulleted-list"><li style="list-style-type:disc">Cela montre l&#x27;importance des « caractéristiques » temporelles pour notre modèle, telles qu&#x27;une variable catégorielle pour les jours de la semaine et le mois de l&#x27;année.</li></ul><ul id="19369db6-fa4f-8035-9194-cf4d80309c0b" class="bulleted-list"><li style="list-style-type:disc">Cependant, comme nous travaillerons avec des séries hebdomadaires, les enjeux des valeurs sporadiques seront atténués de sorte que le rééchantillonnage « lissera » la distribution et réduira les valeurs sporadiques. Cela facilitera l&#x27;apprentissage du modèle.</li></ul><ul id="19269db6-fa4f-80b6-b941-c3b567a2dd5a" class="bulleted-list"><li style="list-style-type:disc">De plus, les variables du mois et le fait que la semaine contienne ou non un jour férié national seront également utilisés pour faciliter l&#x27;apprentissage.<figure id="19269db6-fa4f-8047-a665-e3210968ecf9" class="image"><a href="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/image%203.png"><img style="width:624px" src="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/image%203.png"/></a></figure></li></ul><h2 id="19269db6-fa4f-8022-aa5b-e3dba04ef276" class="">Conclusion</h2><p id="19269db6-fa4f-8096-9c5a-e84ed9a45da1" class="">La difficulté des données se reflète dans l&#x27;intermittence de la série et dans le fait que les directeurs souhaitent recevoir une prédiction au niveau du magasin, ce qui les incite à faire une prédiction granulaire, qui à son tour génère plus de 0. Comme le test ne décrit pas ce qui constitue un magasin, j&#x27;émettrai l&#x27;hypothèse qu&#x27;un « magasin » peut être décrit par une région et que c&#x27;est par région que les ventes futures seront prédites. </p><h1 id="19269db6-fa4f-80e8-86a7-ea7382aec521" class="">Question #2 : Insights et interprétation</h1><p id="19269db6-fa4f-802c-b4b6-e45fafd51c15" class="">Les insights pouvant permettre aux gestionnaires de mieux comprendre ce qui fait varier leurs ventes sont nombreux. </p><p id="19269db6-fa4f-8077-a397-ea6e06e678ec" class="">*L&#x27;analyse se fera en partie par région, en supposant qu&#x27;une région correspond à peu près à un secteur auquel un cadre est affecté. </p><h3 id="19269db6-fa4f-80fc-8d90-c236de92542b" class="">L’impact des “holiday” </h3><p id="19269db6-fa4f-803d-bba5-f3cdfb7f7471" class="">Tout d&#x27;abord, j&#x27;étudierai les variables temporelles, telles que la saisonnalité hebdomadaire et annuelle et l&#x27;effet des “holiday” sur les ventes. </p><div id="19269db6-fa4f-80e4-932e-c3ef3cb09350" class="column-list"><div id="19269db6-fa4f-80e4-8597-e88cce5611d7" style="width:50%" class="column"><figure id="19269db6-fa4f-80c9-b5db-d81e9a89ebb7" class="image"><a href="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-05_a_09.48.56.png"><img style="width:624px" src="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-05_a_09.48.56.png"/></a></figure></div><div id="19269db6-fa4f-8087-8f0d-e7f860ecc06e" style="width:50%" class="column"><figure id="19269db6-fa4f-80e0-a1b4-e3b65b142c5a" class="image"><a href="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-05_a_09.54.10.png"><img style="width:2050px" src="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-05_a_09.54.10.png"/></a></figure></div></div><p id="19369db6-fa4f-805b-afd4-cf17e882a0e9" class="">Nous constatons que de nombreuses valeurs aberrantes sont liées à des jours fériés et que ces valeurs aberrantes se produisent principalement les lundis et vendredis.</p><p id="19369db6-fa4f-80b5-b40f-d5f7352f5997" class="">Le client peut donc s&#x27;attendre à avoir des stocks plus importants pendant ces jours fériés.</p><h3 id="19269db6-fa4f-80c2-80d3-dd0e2e32fe52" class="">L’impact de la saisonnalité</h3><figure id="19269db6-fa4f-802a-9aed-c795be840e22" class="image"><a href="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-05_a_09.50.21.png"><img style="width:672px" src="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-05_a_09.50.21.png"/></a></figure><p id="19269db6-fa4f-80f8-98d5-f1c561390293" class="">La saisonnalité au niveau de la semaine montre que dans la région du sud, de plus forte ventes se produisent en moyenne. Les mercredis semblent plus tranquille à travers toute les régions.</p><p id="19269db6-fa4f-808e-ba76-f77a48e3a616" class="">Toutefois, il existe une tendance saisonnière assez forte tout au long de l&#x27;année, par région.</p><figure id="19269db6-fa4f-8035-b1ae-e5de5d6930f9" class="image"><a href="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-05_a_09.56.19.png"><img style="width:709.9857788085938px" src="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-05_a_09.56.19.png"/></a></figure><p id="19369db6-fa4f-80ea-bcfb-c9ca7975c0c3" class="">En moyenne, les mois de février, juillet et octobre enregistrent très peu de ventes, tandis que les mois de mars, juin et novembre en enregistrent davantage. Toutefois, nous constatons également que toutes les régions n&#x27;ont pas la même saisonnalité et qu&#x27;un gestionnaire doit tenir compte du fait que chaque secteur a sa propre dynamique.</p><p id="19369db6-fa4f-8057-9f75-e0198db5bf84" class="">En ce qui concerne ma conclusion sur les perspectives temporelles, je pense qu&#x27;un gestionnaire peut être conscient que la dynamique des ventes entre ces régions change, et qu&#x27;au cours de l&#x27;année, ces ventes ne sont pas constantes, ce qui peut lui permettre de stocker davantage en mars, juin et novembre, et moins en février, juillet et octobre. Il en va de même pour les jours fériés.</p><h3 id="19269db6-fa4f-80c5-b81c-c5e2ebcc9d81" class="">L’impact des rabais</h3><p id="19269db6-fa4f-8089-a2f3-f8c18568f8a0" class="">Deuxièmement, je pense qu&#x27;il est important d&#x27;étudier les bénéfices négatifs, car les ventes ne reflètent pas entièrement ce que les gestionnaires recherchent, c&#x27;est-à-dire, en fin de compte, le bénéfice. Ces bénéfices négatifs semblent être dus aux rabais. </p><figure id="19269db6-fa4f-80f7-adce-ede7d1d435db" class="image"><a href="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-05_a_13.12.56.png"><img style="width:2712px" src="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-05_a_13.12.56.png"/></a></figure><figure id="19269db6-fa4f-80fb-97ab-cdd2ac8058da" class="image"><a href="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-05_a_13.13.16.png"><img style="width:2716px" src="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-05_a_13.13.16.png"/></a></figure><p id="19269db6-fa4f-8082-b818-da5837ff7609" class="">Ce que nous remarquons, c&#x27;est que des bénéfices négatifs significatifs apparaissent pour des rabais d&#x27;environ 0,3 à 0,7, mais la question est la suivante : dans les jours/mois qui suivent ces rabais, les bénéfices augmentent-ils considérablement ? </p><figure id="19269db6-fa4f-8011-8ee4-fd8be47aac32" class="image"><a href="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-05_a_13.14.05.png"><img style="width:709.9715576171875px" src="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-05_a_13.14.05.png"/></a></figure><p id="19269db6-fa4f-80b3-ab9d-cdb73ea59913" class="">Ce graphique montre l&#x27;augmentation ou la diminution des ventes dans les 7 jours suivant une remise. Ce graphique pourrait être étudié plus en détail avec le client afin d&#x27;établir la viabilité de ces rabais et le moment opportun pour les mettre en œuvre.</p><h3 id="19269db6-fa4f-808a-83d6-f36a0c5b0c40" class="">Délais de livraison</h3><p id="19269db6-fa4f-804f-aa1a-f364b81465a4" class="">Troisièmement, les retards de livraison peuvent entraîner une baisse des ventes, voire même de profit négatifs. </p><figure id="19269db6-fa4f-80bf-bf08-e1511ed6bd75" class="image"><a href="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-05_a_13.14.28.png"><img style="width:709.9715576171875px" src="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-05_a_13.14.28.png"/></a></figure><figure id="19269db6-fa4f-800b-a10b-c74c128c6640" class="image"><a href="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-05_a_13.14.38.png"><img style="width:2716px" src="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-05_a_13.14.38.png"/></a></figure><p id="19369db6-fa4f-806f-a769-c3f5fb1f4183" class="">On constate une augmentation significative des ventes avec un délai de livraison de deux jours dans toutes les régions. À ce niveau de granularité, il n&#x27;y a pas de schéma clair dans l&#x27;impact des délais de livraison sur les ventes ou les bénéfices. </p><h2 id="19369db6-fa4f-8023-9175-f601e9353a3a" class="">Solution ML </h2><figure id="19369db6-fa4f-800f-921f-f6cab24484ef" class="image"><a href="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-07_a_11.55.13.png"><img style="width:2072px" src="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-07_a_11.55.13.png"/></a></figure><p id="19369db6-fa4f-80e7-9d57-cbf13d62aeee" class="">Grâce a un modèle en arbre, nous pouvons évaluer l&#x27;importance de certaines caractéristiques, ce qui permet une analyse de ces variables sur les ventes par région au niveau de la semaine.</p><p id="19369db6-fa4f-8098-9d06-c709f11895d8" class="">Il ne faut pas oublier que ces variables sont importantes lorsque l&#x27;on fait des prédictions une semaine à la fois, car elles peuvent être différentes en fonction de l&#x27;horizon de prédiction. Nous notons ici que les rabais, la semaine et les ventes des semaines passés sont les variables les plus pertinentes pour estimer les ventes futures. </p><p id="19369db6-fa4f-8066-8584-ccbf30822573" class="">Toutefois, pour permettre au gestionnaire de prendre action sur ces insights, il faudrait davantage étudier l’impact positif ou négatif (augmentation ou réduction des ventes) suite à un mouvement dans ces variables. </p><h1 id="19269db6-fa4f-808b-ac8b-c5988efc8601" class="">Question #3: Solution ML </h1><p id="19369db6-fa4f-8080-aae8-d4229a56e8a5" class="">Prédiction des séries par semaine et par région, en utilisant 2017 comme ensemble de test, et en n&#x27;ayant pas d&#x27;ensemble de validation, car lightgbm utilise<strong> </strong>bagging_fraction <code>et bagging_freq</code><strong>, </strong>ce qui permet d&#x27;utiliser des out of bag observations (OOB) pour sa validation. </p><p id="19369db6-fa4f-8023-a388-cc413cf14e7d" class="">Pour prévoir les ventes, j&#x27;ai utilisé trois approches, en commençant par une “Seasonal Naive”, puis des modèles de séries intermittentes et enfin un modèle d&#x27;arbre avec des intervalles de prédiction.</p><p id="19369db6-fa4f-80a6-9800-ed68d8e61bff" class="">L&#x27;utilisation de ces trois modèles est essentielle pour comprendre l&#x27;intérêt d&#x27;utiliser des modèles plus complexes pour prédire les ventes.</p><p id="19369db6-fa4f-8044-bd94-ee6d846c424d" class="">Cependant, malgré une saisonnalité assez forte au niveau de l&#x27;année, je n&#x27;ai pas utilisé de modèles de séries temporelles classiques tels que l&#x27;ARIMA, car j&#x27;ai décidé de faire des prédictions par semaine, et à cette agrégation, un grand nombre de 0 étaient présents par région, ce qui peut biaiser les résultats de l&#x27;autocorrélation dans l&#x27;ACF et l&#x27;PACF.</p><h2 id="19369db6-fa4f-8049-8d51-ca6ffaf1563f" class="">Pourquoi le modèle baseline saisonnier?</h2><p id="19369db6-fa4f-80b3-a2b6-f2e410495e28" class="">Tout simplement parce que nous avons remarqué que les ventes suivent une tendance saisonnière assez forte au fil des ans. L&#x27;objectif est d&#x27;établir une base de référence simple, mais pas trop naïve. Les inconvénients de cette approche est que le modèle saisonnier de base repose sur l’hypothèse que les ventes d’un mois donné peuvent être approximées par celles du même mois de l&#x27;année précédente (exemple : les ventes de janvier 2017 sont prédites à partir des ventes de janvier 2016).</p><p id="19369db6-fa4f-80b5-a3c7-ef71c612edbf" class="">Maintes limitations se modèle possède, tel qu’il <strong>n’utilise aucune variable explicative</strong>, ce qui le rend moins précis face à des changements de conditions externes.</p><h2 id="19369db6-fa4f-8092-9c6d-fae8505cb5f9" class="">Pourquoi les modèles de séries intermittentes? </h2><p id="19369db6-fa4f-808c-941f-da0afa554758" class="">Les modèles intermittents comme <strong>ADIDA (Aggregate-Disaggregate Intermittent Demand Approach)</strong> et <strong>MAPA (Multiple Aggregation Prediction Algorithm)</strong> ne sont pas conçus pour prédire efficacement les observations sporadiques et les périodes avec des observations nulles. Toutefois, ces modèles tentent de prédire intelligemment les séries sachant que les ventes sont irrégulières, comme nous le voyons au niveau journalier ci-dessous pour la région sud.</p><p id="19369db6-fa4f-80bb-93ff-c5db6a6cd718" class="">Ces méthodes se composent de deux parties : l’agrégation et la désagrégation. <strong>ADIDA</strong> utilise une seule agrégation temporelle pour réduire considérablement l’intermittence dans les données. Cette méthode expérimente différentes tailles de répartition pour agréger les données, et le choix de la taille de la répartition peut grandement influencer les performances de prédiction, en raison du fait qu’une classe inappropriée peut entraîner une perte d’informations importantes. Les prévisions sont réalisées pour chaque niveau d’agrégation et sont ensuite agrégées pour générer une prédiction finale à l’indice temporel original. Quant à la désagrégation, cette partie se charge de décomposer la série en fonction de l’indice temporel d’origine. Cette décomposition est effectuée à l’aide de poids, ce qui permet d’assigner des poids plus faibles aux jours où le jeu de données semble comporter moins d’observations, par exemple, les jours de fin de semaine [29].</p><p id="19369db6-fa4f-806b-9598-c46f27434a40" class="">La méthode <strong>MAPA</strong>, quant à elle, ne se limite pas à une seule taille d’agrégation, mais combine plusieurs tailles d’agrégation. Cette approche permet de capturer différentes tendances et motifs dans la série temporelle, améliorant ainsi la précision des prédictions.</p><figure id="19269db6-fa4f-804b-bb69-f3e5d12124aa" class="image"><a href="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-06_a_18.35.35.png"><img style="width:681.9815063476562px" src="MOOV%20AI%20-%20Sales%20forecasting%2019269db6fa4f809ba5f6cca3071c17bd/Capture_decran_le_2025-02-06_a_18.35.35.png"/></a></figure><p id="19369db6-fa4f-80b4-855f-c0a258ad6fc8" class="">Cette limitation de ne pas capturer les valeurs sporadiques pourrait rendre leur utilisation peu pertinente dans notre contexte d’affaires. Toutefois, si l’objectif du gestionnaire est simplement de maintenir des inventaires non déficitaires pour couvrir sa demande de chaises et de tables, les résultats pourraient être considérés comme intéressants. De plus, ce modèle s’agence bien avec une mesure de performance adéquate pour évaluer cette perspective : le <strong>Cumulative Forecasting Error (CFE)</strong>.</p><p id="19369db6-fa4f-8036-8bdb-da879aff9b11" class="">Un avantage important de ce type de modèle, comparé aux autres modèles, est qu’il pourrait permettre au gestionnaire d’obtenir des prédictions de ses ventes à un niveau plus granulaire pour chaque magasin (ce qui engendrerait plus de zéros).</p><h2 id="19369db6-fa4f-80c1-96d8-c238e3585628" class=""><strong>Modèle LightGBM</strong></h2><p id="19369db6-fa4f-80f5-ab8b-c049f4a21076" class="">Enfin, je pense qu&#x27;il est important d&#x27;avoir au moins un modèle d&#x27;arbre pour permette des intervalles de prédiction, afin de prédire les quantiles 90 et 10 avec un seul modèle. Il faut également disposer d&#x27;au moins un modèle utilisant les variables importantes trouvées dans la question 2.</p><p id="19369db6-fa4f-805a-9d72-e5f571ac28f2" class="">Cependant, ce modèle est plus complexe à mettre en œuvre, et nous devons nous assurer que les intervalles de confiance ont une bonne couverture et sont correctement calibrés.</p><p id="19369db6-fa4f-80ed-b49b-e853563ed917" class="">De plus, ce modèle est plus apte à travailler avec des valeurs nulles qu&#x27;un modèle statistique comme ARIMA, et est suffisamment interprétable grâce à la permutation des caractéristiques.</p><p id="19369db6-fa4f-80af-9dbb-fd21b46a1d24" class="">De plus, lightgbm me permet d&#x27;appliquer très facilement la régularisation et d&#x27;entraîner le modèle en général. L&#x27;optimisation a lieu dans l&#x27;ensemble d&#x27;apprentissage lui-même (OOB), ce qui est à mon avantage car nous n&#x27;avons pas assez de données pour un ensemble de validation.</p><h3 id="19369db6-fa4f-8092-a3ae-f3002cc06d6a" class="">Performance </h3><p id="19369db6-fa4f-807b-87db-e76cdc48fb4b" class="">Un dernier mot sur la performance : ici, le choix du meilleur modèle doit être basé sur la mesure de performance qui est la plus importante pour nous dans le contexte de l&#x27;entreprise. Voulons-nous pénaliser les erreurs plus importantes -&gt; RMSE ? Ou voulons-nous répartir l&#x27;erreur dans le temps → MAE ? </p><h1 id="19269db6-fa4f-80f5-9490-d4ca7f545d17" class="">Question #4 : Dégradation de la performance</h1><p id="19269db6-fa4f-80f0-a373-ffc921dd5289" class="">La dégradation de la performance peut être dû à plusieurs enjeux, par exemple: </p><ol type="1" id="19369db6-fa4f-80f2-8d96-f14b72dcaa4e" class="numbered-list" start="1"><li><strong>Évolution des données</strong> : Les valeurs des variables explicatives ont évolué, reflétant des changements dans l&#x27;environnement ou les comportements des utilisateurs. Cela peut rendre les patterns historiques moins pertinents pour les prédictions actuelles.</li></ol><ol type="1" id="19369db6-fa4f-80bb-b81b-ef8ed9e0ad7f" class="numbered-list" start="2"><li><strong>Manque de réentraînement fréquent</strong> : Si le modèle n&#x27;est pas réentraîné régulièrement, il peut perdre sa capacité à capturer les nouvelles tendances dans les données.</li></ol><ol type="1" id="19369db6-fa4f-80fa-8033-e67a8f67b2fd" class="numbered-list" start="3"><li><strong>Données insuffisantes dans la nouvelle distribution</strong> : Si la proportion des données reflétant le nouveau comportement est faible, le modèle peut avoir du mal à s&#x27;adapter.</li></ol><p id="19369db6-fa4f-8069-a2fa-f99e3268e047" class=""><strong>Solutions :</strong></p><ol type="1" id="19369db6-fa4f-8046-906c-d76bb09d28b4" class="numbered-list" start="1"><li><strong>Réentraînement régulier du modèle</strong> :<ul id="19369db6-fa4f-80b2-9313-f56837261330" class="bulleted-list"><li style="list-style-type:disc">Mettre en place une cédule de réentraînement périodique (par exemple, à la semaine ou mensuel) pour ajuster les paramètres du modèle aux données les plus récentes.</li></ul><ul id="19369db6-fa4f-804c-aef8-ea4a3675ed8f" class="bulleted-list"><li style="list-style-type:disc">On pourrait aussi réduire la taille de la fenêtre de données utilisées pour l&#x27;entraînement afin de privilégier les observations récentes.</li></ul></li></ol><ol type="1" id="19369db6-fa4f-8064-ac78-f6176bc47e4f" class="numbered-list" start="2"><li><strong>Surveillance des variables clés</strong> :<ul id="19369db6-fa4f-8030-9ea7-e24b7e1bcd2d" class="bulleted-list"><li style="list-style-type:disc">Mettre en place des outils de surveillance des variables explicatives pour détecter les shifts de distribution (par exemple, avec des tests statistiques comme le <strong>K-S test</strong>).</li></ul><ul id="19369db6-fa4f-80df-8369-ea7c2e4d7e62" class="bulleted-list"><li style="list-style-type:disc">Identifier les variables qui ont le plus grand impact sur les prédictions et les monitorer de près. </li></ul></li></ol><ol type="1" id="19369db6-fa4f-807f-b77f-f71f0b4ba54b" class="numbered-list" start="3"><li><strong>Validation continue de la performance</strong> :<ul id="19369db6-fa4f-8001-a6d1-c84ec66d565b" class="bulleted-list"><li style="list-style-type:disc">Suivre régulièrement des métriques de performance comme le RMSE ou le MAE sur des ensembles de validation récents pour détecter les baisses de précision dès qu&#x27;elles surviennent.</li></ul></li></ol><p id="19369db6-fa4f-8006-a8bd-e25637af03b4" class="">Tout ceci peut se mettre en place à travers des plateformes comme azure Machine learning, cette étape du cycle de développement MLops attrait à la surveillance et la maintenance du modèle.</p><h1 id="19269db6-fa4f-806f-b959-e97900100dfb" class="">Question #5 : Intégration de l&#x27;IA générative</h1><p id="19369db6-fa4f-8007-8cd0-db45a48f178f" class="">Une IA générative pour utiliser les informations trouvées, telles que l&#x27;effet des vacances ou la saisonnalité par marché et par segment, et pourrait recommander de stocker certains produits spécifiquement à l&#x27;avance. </p><p id="19369db6-fa4f-80a0-ab97-e5f38eb70d82" class="">De plus, elle pourrait faire coïncider les offres de réduction avec certaines périodes de l&#x27;année où les ventes sont plus faibles. </p><p id="19369db6-fa4f-8064-b3f5-fa1a817c3058" class="">L’IA générative pourrait aussi travailler à expliquer la prédiction des ventes. </p><h2 id="19369db6-fa4f-809c-abe2-f2e46c43cc51" class=""><strong>Donne un exemple d&#x27;architecture où l&#x27;IA générative pourrait être utilisée.</strong></h2><p id="19369db6-fa4f-8029-ae5b-da40c4f2b731" class="">Un modèle de type GPT (comme OpenAI GPT-4 ou Gemini) qui interagit avec les prévisions du modèle ML. Le modèle pourrait: <div class="indented"><ul id="19369db6-fa4f-8061-bfde-f57d67e5cd9e" class="bulleted-list"><li style="list-style-type:disc">Génération de recommandations de stockage avant les périodes de forte demande.</li></ul><ul id="19369db6-fa4f-80c3-8320-f61f3620d92f" class="bulleted-list"><li style="list-style-type:disc">Proposition de stratégies promotionnelles adaptées aux périodes creuses.</li></ul><ul id="19369db6-fa4f-80eb-aa63-c9349ae4b8b9" class="bulleted-list"><li style="list-style-type:disc">Explication des prédictions en langage naturel pour les managers.</li></ul></div></p><p id="19369db6-fa4f-805c-ab0a-cc81a0bb5b7f" class="">Pour permettre l’interaction entre le LLM et le modèle ML, un pipeline devrait les connecter. De sorte à ce que les résultats du modèle ML sont envoyés à un LLM (Large Language Model) qui les transforme en recommandations exploitables. De plus, le LLM pourrait également interagir avec des bases de données d&#x27;inventaire et de marketing pour proposer des rabais à des moments spécifiques.</p><h2 id="19369db6-fa4f-8036-a8b8-ff32d077229f" class=""><strong>Propose un exemple de prompt qui pourrait être utilisé pour interagir avec l&#x27;IA générative.</strong></h2><p id="19369db6-fa4f-800f-a43c-c4ea80e7e30b" class="">Un bon prompt doit contenir plusieurs éléments permettant au LLM de générer des réponses plus détaillées et précises. Par exemple, il est important de lui donner un <strong>contexte</strong> au problème :</p><p id="19369db6-fa4f-804e-8950-c1c6786d5aa3" class=""><strong>“Tu dois agir en tant qu’assistant pour prévoir les ventes du magasin. Tu reçois des informations du modèle ML qui te permettront de faire des recommandations.”</strong></p><p id="19369db6-fa4f-801c-ae96-e688c03c3c28" class="">Ensuite, on doit spécifier la <strong>tâche</strong> :</p><p id="19369db6-fa4f-807e-bb9a-d0b3c461704e" class=""><strong>“Tu reçois des estimés des ventes pour les prochaines semaines. Combien de chaises et de tables devrais-tu commander afin de subvenir à la demande ?”</strong></p><p id="19369db6-fa4f-80b9-97bb-f217353ea31e" class="">Enfin, on précise les <strong>contraintes</strong> :</p><p id="19369db6-fa4f-80fe-9e07-fa0b821d75c6" class=""><strong>“Le délai de livraison des produits est d’environ X semaines.”</strong></p><p id="19369db6-fa4f-8000-b284-f191ccbcca29" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
